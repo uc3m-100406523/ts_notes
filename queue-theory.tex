@@ -1,0 +1,227 @@
+% Preamble
+
+%% Document type
+\documentclass[
+	12pt,
+	twoside
+]{book}
+
+%% Layout
+%\usepackage[
+%	a4paper,
+%	top=2cm,
+%	bottom=2cm,
+%	left=3cm,
+%	right=3cm,
+%]{geometry}
+
+%% Layout (simplified)
+\usepackage[
+	a4paper,
+	vmargin=2cm,
+	hmargin=3cm
+]{geometry}
+\usepackage{pdflscape}
+
+%% Line spacing, paragraph spacing and indentation
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+%% Character encoding
+\usepackage[utf8]{inputenc}
+
+%% Font
+\usepackage[T1]{fontenc}
+
+%% Languaje
+\usepackage[english]{babel}
+
+%% Links
+\usepackage[
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue
+	%allcolors=blue
+]{hyperref}
+
+\usepackage{subfiles}
+
+%% Tables
+\usepackage{longtable}
+\usepackage{multirow}
+
+%% Long lists
+\usepackage{enumitem}
+\newlist{longitem}{itemize}{10}
+\setlist[longitem, 1]{label=$\bullet$)}
+\setlist[longitem, 2]{label=$-$)}
+\setlist[longitem, 3]{label=$*$)}
+\setlist[longitem, 4]{label=$\circ$)}
+\setlist[longitem, 5]{label=$\blacksquare$)}
+\setlist[longitem, 6]{label=$\blacktriangleright$)}
+\setlist[longitem, 7]{label=$\blacklozenge$)}
+\setlist[longitem, 8]{label=$\lozenge$)}
+\setlist[longitem, 9]{label=$\otimes$)}
+\setlist[longitem, 10]{label=$\bigodot$)}
+
+%% Floating figures
+\usepackage{float}
+
+%% Color settings
+\usepackage[table]{xcolor}
+\usepackage[table]{xcolor}
+\definecolor{azulUC3M}{RGB}{0,0,102}
+\definecolor{gray97}{gray}{.97}
+\definecolor{gray75}{gray}{.75}
+\definecolor{gray45}{gray}{.45}
+
+%% Head and foot
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE]{Telecommunication Systems}
+\fancyhead[CE]{}
+\fancyhead[RE]{Universidad Carlos III de Madrid}
+\fancyhead[LO]{Universidad Carlos III de Madrid}
+\fancyhead[CO]{}
+\fancyhead[RO]{Telecommunication Systems}
+\fancyfoot{}
+\fancyfoot[LE]{}
+\fancyfoot[CE]{\thepage}
+\fancyfoot[RE]{}
+\fancyfoot[LO]{}
+\fancyfoot[CO]{\thepage}
+\fancyfoot[RO]{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+%\renewcommand{\headruleskip}{1pt}
+%\renewcommand{\footruleskip}{1pt}
+
+%% Code blocks
+\usepackage{listings}
+\usepackage{lstautogobble}
+\lstdefinestyle{mystyle}{
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=4
+}
+\lstset{
+	style=mystyle,
+	language=tex,
+	autogobble=true
+}
+
+%% Math expressions
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+
+%% Images
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{plantuml}
+
+%% References
+\usepackage[
+	backend=biber,
+	style=ieee,
+	isbn=false,
+	sortcites,
+	maxbibnames=6,
+	minbibnames=1
+]{biblatex}
+\addbibresource{main.bib}
+
+%% Document information
+\title{Telecommunication Systems}
+\author{Universidad Carlos III de Madrid}
+\date{Updated: \today}
+
+
+
+\begin{document}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		& $M/M/1$ & $M/M/c$ & $M/M/c/c$ \\
+		\hline
+		$A$ & \multicolumn{3}{c|}{$M$} \\
+		\hline
+		$B$ & \multicolumn{3}{c|}{$M$} \\
+		\hline
+		$c$ & $1$ & \multicolumn{2}{c|}{$c$} \\
+		\hline
+		$K$ & \multicolumn{2}{c|}{$\infty$} & $c$ \\
+		\hline
+		$m$ & \multicolumn{3}{c|}{$\infty$} \\
+		\hline
+		$z$ & \multicolumn{3}{c|}{$FIFO$} \\
+		\hline
+		$r$ & \multicolumn{3}{c|}{$\sim \operatorname{exp} (\lambda)$} \\
+		\hline
+		$u$ & \multicolumn{3}{c|}{$\sim \operatorname{Poi} (\lambda)$} \\
+		\hline
+		$s$ & \multicolumn{3}{c|}{$\sim \operatorname{exp} (\mu)$} \\
+		\hline
+	\end{tabular}
+	\caption{
+		\label{tab:summary_models_1}
+		Models parameters.
+	}
+\end{table}
+
+\begin{landscape}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		& $M/M/1$ & $M/M/c$ & $M/M/c/c$ \\
+		\hline
+		$\rho$ & $\frac {\gamma} {\mu} = A_c = L_s < 1$ & \multicolumn{2}{c|}{$\frac {\gamma} {\mu \cdot c} = \frac {A_c} {c} = \frac {L_s} {c} < 1$} \\
+		\hline
+		$S$ & $\frac {1} {1 - \rho}$ & $\sum_{n=0}^{c-1} \left( \frac {A_{o}^n} {n!} \right) + \frac {A_{o}^c} {c! \cdot (1-\rho)}$ & $\sum_{n=0}^{c} \left( \frac {A_{o}^n} {n!} \right)$ \\
+		\hline
+		$P_0$ & $\frac {1} {S} = 1 - \rho$ & $\frac {1} {S} = \frac {1} {\sum_{n=0}^{c-1} \left( \frac {A_{o}^n} {n!} \right) + \frac {A_{o}^c} {c! \cdot (1-\rho)}}$ & $\frac {1} {S} = \frac {1} {\sum_{n=0}^{c} \left( \frac {A_{o}^n} {n!} \right)}$ \\
+		\hline
+		$P(n \geq 1)$ & $1 - P_0 = \rho$ & $1 - P_0$ & $1 - P_0$ \\
+		\hline
+		$P_n$ & $(1 - \rho) \cdot \rho^n$ & $\frac {1} {S} \cdot \left( 1 - \frac {1} {S} \right)^n$ & $\frac {\frac{A_{o}^n}{c!}} {\sum_{k=0}^c \left( \frac {A_{o}^k} {k!} \right)}$ \\
+		\hline
+		$L_s$ & $A_c = \frac {\gamma} {\mu} = \rho$ & \multicolumn{2}{c|}{$A_c = \frac {\gamma} {\mu} = c \cdot \rho$} \\
+		\hline
+		$L_q$ & $\frac {\rho^2} {1-\rho}$ & $\frac {\rho} {1-\rho} \cdot \operatorname{C}(A_o, c)$ & $0$ \\
+		\hline
+		$L$ & $\frac {\rho} {1-\rho}$ & $c \cdot \rho + \frac {\rho} {1-\rho} \cdot \operatorname{C}(A_o, c)$ & $L_s = A_c = \frac {\gamma} {\mu} = c \cdot \rho$ \\
+		\hline
+		$W_s$ & \multicolumn{3}{c|}{$\frac {1} {\mu}$} \\
+		\hline
+		$W_q$ & $W_s \cdot \frac {\rho} {1-\rho} = \frac {\rho} {\mu \cdot (1-\rho)}$ & $\frac {W_s} {c \cdot (1-\rho)} \cdot \operatorname{C}(A_o, c) = \frac {1} {\mu \cdot c \cdot (1-\rho)} \cdot \operatorname{C}(A_o, c)$ & $0$ \\
+		\hline
+		$W$ & $\frac {W_s} {1-\rho} = \frac {1} {\mu \cdot (1-\rho)}$ & $W_s + \frac {W_s} {c \cdot (1-\rho)} \cdot \operatorname{C}(A_o, c) = \frac {1} {\mu} + \frac {1} {c \cdot \mu \cdot (1-\rho)} \cdot \operatorname{C}(A_o, c)$ & $W_s = \frac {1} {\mu}$ \\
+		\hline
+		$P_{wait}$ & $A_o = \frac {\lambda} {\mu}$ & $\operatorname{C}(A_o, c)$ & $0$ \\
+		\hline
+		$P_{blocking}$ & \multicolumn{2}{c|}{$0$} & $\operatorname{B}(A_o, c)$ \\
+		\hline
+		$P(W_q < t)$ & $1 - A_o \cdot e^{- \mu \cdot (1-A_o) \cdot t}$ & $1 - \operatorname{C}(A_o, c) \cdot e^{- c \cdot \mu \cdot (1-\rho) \cdot t}$ & \\
+		\hline
+		$P(W_q > t)$ & $A_o \cdot e^{- \mu \cdot (1-A_o) \cdot t}$ & $\operatorname{C}(A_o, c) \cdot e^{- c \cdot \mu \cdot (1-\rho) \cdot t}$ & \\
+		\hline
+	\end{tabular}
+	\caption{
+		\label{tab:summary_models_1}
+		Models formulae.
+	}
+\end{table}
+
+\end{landscape}
+
+\end{document}
